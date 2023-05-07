@@ -10,3 +10,13 @@ var handleErrors = (response) => {
     return response;
 }
 
+var getCurrentConditions = (event) => {
+    let city = $('#search-city').val();
+    currentCity = $('#search-city').val();
+
+    let queryURL = "https://api.openweathermap.org/data/3.0/weather?q"+ city + "&units=imperial" + "&APPID=" + owmAPI;
+    fetch(queryURL)
+    
+}
+
+getCurrentConditions();
