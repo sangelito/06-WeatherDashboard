@@ -20,6 +20,10 @@ var getCurrentConditions = (event) => {
     .then((response) => {
         return response.json()
     })
-}
+// .then((response) => {
+//     saveCity(city); 
+//     $('#search-error').text
+// })
+ }
 
 getCurrentConditions();
