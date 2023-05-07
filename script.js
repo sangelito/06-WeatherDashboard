@@ -16,7 +16,10 @@ var getCurrentConditions = (event) => {
 
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ city + "&units=imperial" + "&APPID=" + owmAPI;
     fetch(queryURL)
-    
+    .then(queryURL)
+    .then((response) => {
+        return response.json()
+    })
 }
 
 getCurrentConditions();
