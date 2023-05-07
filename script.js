@@ -14,7 +14,7 @@ var getCurrentConditions = (event) => {
     let city = $('#search-city').val();
     currentCity = $('#search-city').val();
 
-    let queryURL = "https://api.openweathermap.org/data/3.0/weather?q"+ city + "&units=imperial" + "&APPID=" + owmAPI;
+    let queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ city + "&units=imperial" + "&APPID=" + owmAPI;
     fetch(queryURL)
     
 }
