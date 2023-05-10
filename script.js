@@ -16,17 +16,15 @@ var getCurrentConditions = (event) => {
 
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ city + "&units=imperial" + "&APPID=" + owmAPI;
     fetch(queryURL)
-    .then(queryURL)
-    .then(handleErrors)
-    .then((response) => {
-        return response.json()
-    })
+    .then(queryURL => { return queryURL.json()})
+    .then(response => {console.log (response)})
+  
 .then((response) => {
     //save to local storage
     saveCity(city); 
     $('#search-error').text("")
     //icon for weather
-    let currentWeatherIcon="https://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
+    let currentWeatherIcon ="https://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
     //time zone
     let currentTimeUTC = response.dt;
     let currentTimeZoneOffset = response.timezone;
