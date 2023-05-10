@@ -17,9 +17,9 @@ var getCurrentConditions = (event) => {
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ city + "&units=imperial" + "&APPID=" + owmAPI;
     fetch(queryURL)
     .then(queryURL => { return queryURL.json()})
-    .then(response => {console.log (response)})
+    .then(response => {console.log (response)
   
-.then((response) => {
+
     //save to local storage
     saveCity(city); 
     $('#search-error').text("")
