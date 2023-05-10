@@ -155,6 +155,29 @@ var getFiveDayForecast = (event) => {
         //TO DO: Add a clear button
     }
  }
-
+// New city search button event listener
+$('#search-button').on("click", (event) => {
+    event.preventDefault();
+    currentCity = $('#search-city').val();
+    getCurrentConditions(event);
+    });
+    
+    // Old searched cities buttons event listener
+    $('#city-results').on("click", (event) => {
+        event.preventDefault();
+        $('#search-city').val(event.target.textContent);
+        currentCity=$('#search-city').val();
+        getCurrentConditions(event);
+    });
+    
+    // Clear old searched cities from localStorage event listener
+    $("#clear-storage").on("click", (event) => {
+        localStorage.clear();
+        renderCities();
+    });
+    
+    // Render the searched cities
+    renderCities();
+    
 
 getCurrentConditions();
