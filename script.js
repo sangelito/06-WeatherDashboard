@@ -17,6 +17,7 @@ var getCurrentConditions = (event) => {
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ city + "&units=imperial" + "&APPID=" + owmAPI;
     fetch(queryURL)
     .then(queryURL)
+    .then(handleErrors)
     .then((response) => {
         return response.json()
     })
@@ -34,6 +35,7 @@ var getCurrentConditions = (event) => {
 })
  }
 
+
  var saveCity = (newCity) => {
     let cityExists = false;
     // Check if City exists in local storage
@@ -43,5 +45,28 @@ var getCurrentConditions = (event) => {
             break;
         }
     }
+ //save to local storage
+ if (cityExists === false){
+    localStorage.setItem('cities' + localStorage.length, newCity);
+    }
  }
+ 
+ var renderCities = () => {
+    $('#city-results').empty();
+    if (localStorage.length===0){
+        if(lastCity){
+            $('#search-city').attr("value", lastCity);
+        } else{ 
+            $('#search-city').attr("value", "Chicago");
+        }
+    } else {
+        let lastCityKey="cities"+(localStorage.length-1);
+        lastCity=localStorage.getItem(lastCityKey);
+        $('#search-city').attr("value", lastCity);
+        
+    }
+ }
+
+
 getCurrentConditions();
+
