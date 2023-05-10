@@ -150,7 +150,9 @@ var getFiveDayForecast = (event) => {
                 cityEl = `<button type="button" class="list-group-item list-group-item-action">${city}</button></li>`;
             }
             //Append City to page??
+            $('#city-results').prepend(cityEl);
         }
+        //TO DO: Add a clear button
     }
  }
 
