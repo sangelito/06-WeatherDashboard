@@ -20,10 +20,28 @@ var getCurrentConditions = (event) => {
     .then((response) => {
         return response.json()
     })
-// .then((response) => {
-//     saveCity(city); 
-//     $('#search-error').text
-// })
+.then((response) => {
+    //save to local storage
+    saveCity(city); 
+    $('#search-error').text("")
+    //icon for weather
+    let currentWeatherIcon="https://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
+    //time zone
+    let currentTimeUTC = response.dt;
+    let currentTimeZoneOffset = response.timezone;
+    let currentTimeZoneOffsetHours = currentTimeZoneOffset / 60 / 60;
+    let currentMoment = moment.unix(currentTimeUTC).utc().utcOffset(currentTimeZoneOffsetHours);
+})
  }
 
+ var saveCity = (newCity) => {
+    let cityExists = false;
+    // Check if City exists in local storage
+    for (let i = 0; i < localStorage.length; i++) {
+        if (localStorage["cities" + i] === newCity) {
+            cityExists = true;
+            break;
+        }
+    }
+ }
 getCurrentConditions();
