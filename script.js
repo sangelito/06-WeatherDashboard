@@ -61,7 +61,11 @@ var getCurrentConditions = (event) => {
         let lastCityKey="cities"+(localStorage.length-1);
         lastCity=localStorage.getItem(lastCityKey);
         $('#search-city').attr("value", lastCity);
-        
+        for (let i=0; i < localStorage.length; i++){
+            let city = localStorage.getItem("cities" + i);
+            let cityEl;
+            //set to last 
+        }
     }
  }
 
