@@ -104,6 +104,13 @@ var getFiveDayForecast = (event) => {
             let city = localStorage.getItem("cities" + i);
             let cityEl;
             //set to last 
+            if (currentCity === ""){
+                currentCity=lastCity
+            }
+            //active for currentCity
+            if (city === currentCity){cityEl = `<button type="button" class="list-group-item list-group-item-action active">${city}</button></li>`;
+            } else { cityEl = `<button type="button" class="list-group-item list-group-item-action">${city}</button></li>`;
+            }
         }
     }
  }
