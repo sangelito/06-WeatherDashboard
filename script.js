@@ -30,6 +30,22 @@ var getCurrentConditions = (event) => {
     let currentTimeZoneOffset = response.timezone;
     let currentTimeZoneOffsetHours = currentTimeZoneOffset / 60 / 60;
     let currentMoment = moment.unix(currentTimeUTC).utc().utcOffset(currentTimeZoneOffsetHours);
+
+    renderCities(); 
+
+    getFiveDayForecast(event);
+    $('#header-text').text(response.name);
+    let currentWeatherHTML = 
+        `<h3>${response.name} ${currentMoment.format("(MM/DD/YY)")}<img src="${currentWeatherIcon}"></h3>
+        <ul class="list-unstyled">
+        <li>Temperature: ${response.main.temp}&#8457;</li>
+        <li>Humidity: ${response.main.humidity}%</li>
+        <li>Wind Speed: ${response.wind.speed} mph</li>
+        <li id="uvIndex">UV Index:</li>
+        </ul>`;
+            
+     
+    
 })
  }
 
@@ -38,11 +54,9 @@ var getFiveDayForecast = (event) => {
     let queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial" + "&APPID=" + owmAPI;
     // Fetch from API
     fetch(queryURL)
-        .then (handleErrors)
-        .then((response) => {
-            return response.json();
-        })
-        .then((response) => {
+    .then(queryURL => { return queryURL.json()})
+    .then(response => {console.log (response)
+        
             let fiveDayForecastHTML = `
             <h2>5-Day Forecast:</h2>
             <div id="fiveDayForecastUl" class="d-inline-flex flex-wrap ">`;
@@ -109,8 +123,10 @@ var getFiveDayForecast = (event) => {
             }
             //active for currentCity
             if (city === currentCity){cityEl = `<button type="button" class="list-group-item list-group-item-action active">${city}</button></li>`;
-            } else { cityEl = `<button type="button" class="list-group-item list-group-item-action">${city}</button></li>`;
+            } else { 
+                cityEl = `<button type="button" class="list-group-item list-group-item-action">${city}</button></li>`;
             }
+            //Append City to page??
         }
     }
  }
